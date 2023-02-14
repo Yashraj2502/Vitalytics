@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonOxygen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SPO2"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="132dp"
+        android:layout_margin="20dp"
+        android:padding="30dp"/>
+
+    <Button
+        android:id="@+id/buttonBlood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Blood Pressure"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="206dp"
+        android:layout_below="@+id/buttonOxygen"
+        android:layout_margin="20dp"
+        android:padding="30dp" />
+
+    <Button
+        android:id="@+id/buttonHeart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Heart Rate"
+        tools:layout_editor_absoluteX="139dp"
+        tools:layout_editor_absoluteY="275dp"
+        android:layout_below="@+id/buttonBlood"
+        android:layout_margin="20dp"
+        android:padding="30dp" />
+</RelativeLayout>
