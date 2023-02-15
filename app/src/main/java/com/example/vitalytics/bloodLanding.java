@@ -8,17 +8,17 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class heartLanding extends AppCompatActivity {
+public class bloodLanding extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.heart_landing);
+        setContentView(R.layout.blood_landing);
 
-        Button nxtbtn = (Button) findViewById(R.id.nextPage);
-        nxtbtn.setOnClickListener(new View.OnClickListener() {
+        Button nxt = (Button) findViewById(R.id.start);
+        nxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(heartLanding.this, heartWorking.class);
+                Intent intent = new Intent(bloodLanding.this, bloodWorking.class);
                 startActivity(intent);
             }
         });

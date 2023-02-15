@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/themeBlue"
         app:tabTextColor="@color/white" />
 
     <androidx.viewpager.widget.ViewPager
@@ -28,6 +27,8 @@
             <TextView
                 android:id="@+id/current"
                 style="@style/Theme.Vitalytics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:paddingLeft="16dp"
                 android:text="@string/oxy"
@@ -45,6 +46,8 @@
             <TextView
                 android:id="@+id/history"
                 style="@style/Theme.Vitalytics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:paddingLeft="16dp"
                 android:text="@string/hist"
@@ -54,5 +57,4 @@
 
     </androidx.viewpager.widget.ViewPager>
 
-
-</LinearLayout>
+</RelativeLayout>

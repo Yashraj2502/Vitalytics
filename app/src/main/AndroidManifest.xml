@@ -7,7 +7,13 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application
         android:allowBackup="true"
@@ -69,14 +75,71 @@
             </intent-filter>
         </activity>
 
+
+<!--   For Vital's Part   -->
+        <activity
+            android:name=".startVitals"
+            android:label="VitalStarting"
+            android:exported="true" />
+
+        <activity
+            android:name=".vitalScanProcess"
+            android:label="VitalProcess"
+            android:exported="true" />
+
+        <activity
+            android:name=".resultVitals"
+            android:label="VitalResult"
+            android:exported="true" />
+
+
+<!--    For Oxygen    -->
+
         <activity
             android:name=".oxygenLanding"
             android:label="oxygenLanding"
             android:exported="true"/>
 
-        <activity android:name=".oxyyy"
+        <activity
+            android:name=".oxyyy"
             android:label="OxygenAlgo"
             android:exported="true" />
+
+        <activity
+            android:name=".oxygyen"
+            android:label="OxygenLandPage"
+            android:exported="true" />
+
+        <activity
+            android:name=".oxygenResult"
+            android:exported="true" />
+
+
+<!--    For Heart Disease    -->
+
+        <activity
+            android:name=".heartLanding"
+            android:exported="true" />
+
+        <activity
+            android:name=".heartWorking"
+            android:exported="true" />
+
+        <activity android:name=".heartResult"
+            android:exported="true" />
+
+
+<!--    For Blood Pressure    -->
+
+        <activity android:name=".bloodLanding"
+            android:exported="true" />
+
+        <activity android:name=".bloodWorking"
+            android:exported="true" />
+
+        <activity android:name=".bloodResult"
+            android:exported="true" />
+
 
     </application>
 

@@ -1,4 +1,4 @@
 package com.example.vitalytics;
 
-public class heartRate {
+public class stressResult {
 }

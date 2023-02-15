@@ -2,6 +2,7 @@ package com.example.vitalytics;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,38 +14,39 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class oxygenResult extends AppCompatActivity {
+public class heartResult extends AppCompatActivity {
     private String user, Date;
+    int HR;
     DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
     java.util.Date today = Calendar.getInstance().getTime();
-    int O2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.result_oxygen);
+        setContentView(R.layout.heart_result);
 
         Date = df.format(today);
-        TextView RO2 = this.findViewById(R.id.O2R);
-        ImageButton SO2 = this.findViewById(R.id.SendO2);
+        TextView RHR = this.findViewById(R.id.HRR);
+        ImageButton SHR = this.findViewById(R.id.SendHR);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            O2 = bundle.getInt("O2R");
+            HR = bundle.getInt("bpm");
             user = bundle.getString("Usr");
-            RO2.setText(String.valueOf(O2));
+            Log.d("DEBUG_TAG", "ccccc" + user);
+            RHR.setText(String.valueOf(HR));
         }
 
-        SO2.setOnClickListener(v -> {
+        SHR.setOnClickListener(v -> {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL, new String[]{"recipient@example.com"});
             i.putExtra(Intent.EXTRA_SUBJECT, "Health Watcher");
-            i.putExtra(Intent.EXTRA_TEXT, user + "'s Oxygen Saturation Level " + "\n" + " at " + Date + " is :   " + O2);
+            i.putExtra(Intent.EXTRA_TEXT, user + "'s Heart Rate " + "\n" + " at " + Date + " is :    " + HR);
             try {
                 startActivity(Intent.createChooser(i, "Send mail..."));
             } catch (android.content.ActivityNotFoundException ex) {
-                Toast.makeText(oxygenResult.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(heartResult.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -52,12 +54,10 @@ public class oxygenResult extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-        Intent i = new Intent(oxygenResult.this, dashboard.class);
+        super.onBackPressed();
+        Intent i = new Intent(heartResult.this, dashboard.class);
         i.putExtra("Usr", user);
         startActivity(i);
         finish();
-        super.onBackPressed();
-
     }
 }

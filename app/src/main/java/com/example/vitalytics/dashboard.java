@@ -40,7 +40,7 @@ public class dashboard extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             // Set a On Click Performer for Heart Rate
-            Intent goHeart = new Intent(dashboard.this, heartRate.class);
+            Intent goHeart = new Intent(dashboard.this, heartLanding.class);
             startActivity(goHeart);
         }
     });

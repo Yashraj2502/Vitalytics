@@ -12,5 +12,8 @@ public class oxygenStaturation extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, new oxygenFragment()).commit();
 
+        setContentView(R.layout.static_vital_scans);
+
+
     }
 }

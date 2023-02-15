@@ -29,7 +29,7 @@ public class startVitals extends AppCompatActivity {
             switch (p) {
 
                 case 1: {
-                    Intent i = new Intent(v.getContext(), heartRate.class);
+                    Intent i = new Intent(v.getContext(), heartLanding.class);
                     i.putExtra("Usr", user);
                     startActivity(i);
                     finish();
@@ -37,7 +37,7 @@ public class startVitals extends AppCompatActivity {
                 break;
 
                 case 2: {
-                    Intent i = new Intent(v.getContext(), bloodPressure.class);
+                    Intent i = new Intent(v.getContext(), bloodLanding.class);
                     i.putExtra("Usr", user);
                     startActivity(i);
                     finish();

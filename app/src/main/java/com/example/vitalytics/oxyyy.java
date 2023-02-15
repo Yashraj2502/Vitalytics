@@ -302,7 +302,7 @@ public class oxyyy extends Activity {
                 }
             }
         }
-
+//        log
         return result;
     }
 

@@ -16,14 +16,12 @@ import android.view.SurfaceView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.vitalytics.Math.Fft;
 
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class heartWorking extends Activity {
+public class bloodWorking extends Activity {
     // Variables Initialization
     private static final String TAG = "HeartRateMonitor";
     private static final AtomicBoolean processing = new AtomicBoolean(false);
@@ -35,21 +33,27 @@ public class heartWorking extends Activity {
     //Toast
     private Toast mainToast;
 
+    //DataBase
+    public String user;
+    UserDB Data = new UserDB(this);
+
+    //ProgressBar
+    private ProgressBar ProgBP;
+    public int ProgP = 0;
+    public int inc = 0;
+
     //Beats variable
     public int Beats = 0;
     public double bufferAvgB = 0;
 
-    //DataBase
-    public String user;
-
-    //ProgressBar
-    private ProgressBar ProgHeart;
-    public int ProgP = 0;
-    public int inc = 0;
-
     //Freq + timer variable
     private static long startTime = 0;
     private double SamplingFreq;
+
+    //BloodPressure variables
+    public double Gen, Agg, Hei, Wei;
+    public double Q = 4.5;
+    private static int SP = 0, DP = 0;
 
     //Arraylist
     public ArrayList<Double> GreenAvgList = new ArrayList<Double>();
@@ -60,7 +64,7 @@ public class heartWorking extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.heart_working);
+        setContentView(R.layout.blood_result);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -68,13 +72,22 @@ public class heartWorking extends Activity {
             //The key argument here must match that used in the other activity
         }
 
+        Hei = Integer.parseInt(Data.getheight(user));
+        Wei = Integer.parseInt(Data.getweight(user));
+        Agg = Integer.parseInt(Data.getage(user));
+        Gen = Integer.parseInt(Data.getgender(user));
+
+        if (Gen == 1) {
+            Q = 5;
+        }
+
         // XML - Java Connecting
         preview = findViewById(R.id.preview);
         previewHolder = preview.getHolder();
         previewHolder.addCallback(surfaceCallback);
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        ProgHeart = findViewById(R.id.HRPB);
-        ProgHeart.setProgress(0);
+        ProgBP = findViewById(R.id.BPPB);
+        ProgBP.setProgress(0);
 
         // WakeLock Initialization : Forces the phone to stay On
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -90,6 +103,7 @@ public class heartWorking extends Activity {
         super.onConfigurationChanged(newConfig);
     }
 
+
     //Wakelock + Open device camera + set orientation to 90 degree
     //store system time as a start time for the analyzing process
     //your activity to start interacting with the user.
@@ -97,9 +111,13 @@ public class heartWorking extends Activity {
     @Override
     public void onResume() {
         super.onResume();
+
         wakeLock.acquire();
+
         camera = Camera.open();
+
         camera.setDisplayOrientation(90);
+
         startTime = System.currentTimeMillis();
     }
 
@@ -115,7 +133,9 @@ public class heartWorking extends Activity {
         camera.stopPreview();
         camera.release();
         camera = null;
+
     }
+
 
     //getting frames data from the camera and start the heartbeat process
     private final Camera.PreviewCallback previewCallback = new Camera.PreviewCallback() {
@@ -141,7 +161,7 @@ public class heartWorking extends Activity {
             double RedAvg;
 
             GreenAvg = ImageProcessing.decodeYUV420SPtoRedBlueGreenAvg(data.clone(), height, width, 3); //1 stands for red intensity, 2 for blue, 3 for green
-            RedAvg = ImageProcessing.decodeYUV420SPtoRedBlueGreenAvg(data.clone(), height, width, 1); //1 stands for red intensity, 2 for blue, 3 for green
+            RedAvg = ImageProcessing.decodeYUV420SPtoRedBlueGreenAvg(data.clone(), height, width, 1);  //1 stands for red intensity, 2 for blue, 3 for green
 
             GreenAvgList.add(GreenAvg);
             RedAvgList.add(RedAvg);
@@ -154,13 +174,14 @@ public class heartWorking extends Activity {
                 inc = 0;
                 ProgP = inc;
                 counter = 0;
-                ProgHeart.setProgress(ProgP);
+                ProgBP.setProgress(ProgP);
                 processing.set(false);
             }
 
             long endTime = System.currentTimeMillis();
             double totalTimeInSecs = (endTime - startTime) / 1000d; //to convert time to seconds
             if (totalTimeInSecs >= 30) { //when 30 seconds of measuring passes do the following " we chose 30 seconds to take half sample since 60 seconds is normally a full sample of the heart beat
+
 
                 Double[] Green = GreenAvgList.toArray(new Double[GreenAvgList.size()]);
                 Double[] Red = RedAvgList.toArray(new Double[RedAvgList.size()]);
@@ -183,13 +204,15 @@ public class heartWorking extends Activity {
                         bufferAvgB = bpm;
                     }
                 } else if ((bpm1 > 45 || bpm1 < 200)) {
+
                     bufferAvgB = bpm1;
+
                 }
 
-                if (bufferAvgB < 45 || bufferAvgB > 200) { //if the heart beat wasn't reasonable after all reset the progresspag and restart measuring
+                if (bufferAvgB < 45 || bufferAvgB > 200) {
                     inc = 0;
                     ProgP = inc;
-                    ProgHeart.setProgress(ProgP);
+                    ProgBP.setProgress(ProgP);
                     mainToast = Toast.makeText(getApplicationContext(), "Measurement Failed", Toast.LENGTH_SHORT);
                     mainToast.show();
                     startTime = System.currentTimeMillis();
@@ -199,30 +222,40 @@ public class heartWorking extends Activity {
                 }
 
                 Beats = (int) bufferAvgB;
+
+                double ROB = 18.5;
+                double ET = (364.5 - 1.23 * Beats);
+                double BSA = 0.007184 * (Math.pow(Wei, 0.425)) * (Math.pow(Hei, 0.725));
+                double SV = (-6.6 + (0.25 * (ET - 35)) - (0.62 * Beats) + (40.4 * BSA) - (0.51 * Agg));
+                double PP = SV / ((0.013 * Wei - 0.007 * Agg - 0.004 * Beats) + 1.307);
+                double MPP = Q * ROB;
+
+                SP = (int) (MPP + 3 / 2 * PP);
+                DP = (int) (MPP - PP / 3);
+
             }
 
-            if (Beats != 0) { //if beasts were reasonable stop the loop and send HR with the username to results activity and finish this activity
-                Intent i = new Intent(heartWorking.this, heartResult.class);
-                i.putExtra("bpm", Beats);
+            if ((SP != 0) && (DP != 0)) {
+                Intent i = new Intent(bloodWorking.this, bloodResult.class);
+                i.putExtra("SP", SP);
+                i.putExtra("DP", DP);
                 i.putExtra("Usr", user);
                 startActivity(i);
                 finish();
             }
 
 
-            if (RedAvg != 0) { //increment the progresspar
-
+            if (RedAvg != 0) {
                 ProgP = inc++ / 34;
-                ProgHeart.setProgress(ProgP);
+                ProgBP.setProgress(ProgP);
             }
-
-            //keeps taking frames tell 30 seconds
             processing.set(false);
 
         }
     };
 
     private final SurfaceHolder.Callback surfaceCallback = new SurfaceHolder.Callback() {
+
 
         @SuppressLint("LongLogTag")
         @Override
@@ -234,6 +267,7 @@ public class heartWorking extends Activity {
                 Log.e("PreviewDemo-surfaceCallback", "Exception in setPreviewDisplay()", t);
             }
         }
+
 
         @Override
         public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
@@ -254,11 +288,13 @@ public class heartWorking extends Activity {
 
         @Override
         public void surfaceDestroyed(SurfaceHolder holder) {
+            // Ignore
         }
     };
 
     private static Camera.Size getSmallestPreviewSize(int width, int height, Camera.Parameters parameters) {
         Camera.Size result = null;
+
         for (Camera.Size size : parameters.getSupportedPreviewSizes()) {
             if (size.width <= width && size.height <= height) {
                 if (result == null) {
@@ -266,11 +302,21 @@ public class heartWorking extends Activity {
                 } else {
                     int resultArea = result.width * result.height;
                     int newArea = size.width * size.height;
+
                     if (newArea < resultArea) result = size;
                 }
             }
         }
+
         return result;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(bloodWorking.this, startVitals.class);
+        i.putExtra("Usr", user);
+        startActivity(i);
+        finish();
+    }
 }
