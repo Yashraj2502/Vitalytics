@@ -11,4 +11,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="lightBlue">#24a0ed</color>
+    <color name="themeBlue">#432C81</color>
+    <color name="OffWhite">#f8f8f8</color>
 </resources>

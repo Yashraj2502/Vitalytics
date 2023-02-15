@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Oxygen"
-        tools:layout_editor_absoluteX="171dp"
-        tools:layout_editor_absoluteY="277dp" />
-</RelativeLayout>
+        android:background="@color/colorPrimary"
+        app:tabTextColor="@color/white" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <!--  Current Tab  -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/OffWhite">
+
+            <TextView
+                android:id="@+id/current"
+                style="@style/Theme.Vitalytics"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingLeft="16dp"
+                android:text="@string/oxy"
+                android:textColor="@color/themeBlue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <!--  History Tab  -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/OffWhite">
+
+            <TextView
+                android:id="@+id/history"
+                style="@style/Theme.Vitalytics"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingLeft="16dp"
+                android:text="@string/hist"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+    </androidx.viewpager.widget.ViewPager>
+
+
+</LinearLayout>
