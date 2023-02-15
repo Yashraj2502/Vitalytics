@@ -197,8 +197,8 @@ public class Butterworth extends Cascade {
 
         LayoutBase m_digitalProto = new LayoutBase(order * 2);
 
-        new BandPassTransform(centerFrequency / sampleRate, widthFrequency
-                / sampleRate, m_digitalProto, m_analogProto);
+//        new BandPassTransform(centerFrequency / sampleRate, widthFrequency
+//                / sampleRate, m_digitalProto, m_analogProto);
 
         setLayout(m_digitalProto, directFormType);
 
