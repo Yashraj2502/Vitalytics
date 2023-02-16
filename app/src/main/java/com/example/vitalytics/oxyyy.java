@@ -11,12 +11,14 @@ import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.text.Html;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -66,12 +68,15 @@ public class oxyyy extends Activity {
     public int counter = 0;
 
 
+
     @SuppressLint("InvalidWakeLockTag")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oxygen_scanning);
 
+
+        ((TextView)findViewById(R.id.name)).setText(Html.fromHtml("SPO<sub>2</sub>"));
 //        Button nxtPage = (Button) findViewById(R.id.start);
 //        nxtPage.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -93,7 +98,7 @@ public class oxyyy extends Activity {
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
 
-        ProgO2 = findViewById(R.id.O2PB);
+        ProgO2 = findViewById(R.id.progressBar);
         ProgO2.setProgress(0);
 
         // WakeLock Initialization : Forces the phone to stay On

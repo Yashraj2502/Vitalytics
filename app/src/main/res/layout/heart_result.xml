@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/heart_result"
@@ -14,40 +14,86 @@
     android:paddingBottom="16dp"
     android:weightSum="1">
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:scaleType="fitCenter"
-        app:srcCompat="@mipmap/hrl" />
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="200dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="100dp"
+        android:gravity="center|center_vertical"
+        android:text="Heart Rate"
+        android:textColor="#432C81"
+        android:textSize="24sp"/>
 
     <TextView
-        android:id="@+id/HRR"
+        android:id="@+id/percentLogo"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/circle"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="80dp"
+        android:text="BPM"
+        android:textColor="@color/OffWhite"
+        android:textSize="50dp"
+        android:translationZ="95dp" />
+
+    <TextView
+        android:id="@+id/dynamicValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/percentLogo"
+        android:layout_marginLeft="-56dp"
+        android:layout_marginTop="180dp"
         android:background="@android:color/transparent"
+        android:paddingRight="50dp"
         android:text=""
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textColor="@color/OffWhite"
+        android:textSize="100dp"
+        android:textStyle="bold"
+        android:translationZ="90dp" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="140dp"
-        app:srcCompat="@mipmap/hrbar" />
+    <Button
+        android:id="@+id/circle"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_below="@id/name"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="37dp"
+        android:background="@drawable/button_press2"
+        android:text=""
+        android:textSize="55sp"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="218dp" />
 
-    <ImageButton
-        android:id="@+id/SendHR"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginBottom="40dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        app:srcCompat="@mipmap/send" />
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="265dp"
+        android:layout_height="62dp"
+        android:layout_below="@id/circle"
+        android:text="SAVE"
+        android:textSize="20sp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/button_press"
+        android:layout_marginLeft="12dp" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="265dp"
+        android:layout_height="62dp"
+        android:layout_below="@id/saveButton"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_press"
+        android:text="Reset"
+        android:textColor="@color/OffWhite"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="494dp"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

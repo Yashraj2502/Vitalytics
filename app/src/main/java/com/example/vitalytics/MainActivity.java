@@ -17,23 +17,13 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-//        new Handler().postDelayed(new Runnable() {
+//        Button nxt =(Button)findViewById(R.id.continnue);
+//        nxt.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void run() {
-//                // Going to the landing page
-//                Intent intent = new Intent(MainActivity.this, landindPage.class);
-//                MainActivity.this.startActivity(intent);
-//                MainActivity.this.finish();
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, login.class);
+//                startActivity(intent);
 //            }
-//        }, 2000); //  }, SPLASH_SCREEN);
-
-        Button nxt =(Button)findViewById(R.id.continnue);
-        nxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, login.class);
-                startActivity(intent);
-            }
-        });
+//        });
     }
 }

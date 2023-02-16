@@ -73,7 +73,7 @@ public class heartWorking extends Activity {
         previewHolder = preview.getHolder();
         previewHolder.addCallback(surfaceCallback);
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        ProgHeart = findViewById(R.id.HRPB);
+        ProgHeart = findViewById(R.id.progressBar);
         ProgHeart.setProgress(0);
 
         // WakeLock Initialization : Forces the phone to stay On

@@ -26,9 +26,9 @@ public class heartResult extends AppCompatActivity {
         setContentView(R.layout.heart_result);
 
         Date = df.format(today);
-        TextView RHR = this.findViewById(R.id.HRR);
-        ImageButton SHR = this.findViewById(R.id.SendHR);
-
+        TextView RHR = this.findViewById(R.id.dynamicValue);
+//        ImageButton SHR = this.findViewById(R.id.SendHR);
+//
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             HR = bundle.getInt("bpm");
@@ -37,18 +37,18 @@ public class heartResult extends AppCompatActivity {
             RHR.setText(String.valueOf(HR));
         }
 
-        SHR.setOnClickListener(v -> {
-            Intent i = new Intent(Intent.ACTION_SEND);
-            i.setType("message/rfc822");
-            i.putExtra(Intent.EXTRA_EMAIL, new String[]{"recipient@example.com"});
-            i.putExtra(Intent.EXTRA_SUBJECT, "Health Watcher");
-            i.putExtra(Intent.EXTRA_TEXT, user + "'s Heart Rate " + "\n" + " at " + Date + " is :    " + HR);
-            try {
-                startActivity(Intent.createChooser(i, "Send mail..."));
-            } catch (android.content.ActivityNotFoundException ex) {
-                Toast.makeText(heartResult.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        SHR.setOnClickListener(v -> {
+//            Intent i = new Intent(Intent.ACTION_SEND);
+//            i.setType("message/rfc822");
+//            i.putExtra(Intent.EXTRA_EMAIL, new String[]{"recipient@example.com"});
+//            i.putExtra(Intent.EXTRA_SUBJECT, "Health Watcher");
+//            i.putExtra(Intent.EXTRA_TEXT, user + "'s Heart Rate " + "\n" + " at " + Date + " is :    " + HR);
+//            try {
+//                startActivity(Intent.createChooser(i, "Send mail..."));
+//            } catch (android.content.ActivityNotFoundException ex) {
+//                Toast.makeText(heartResult.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 

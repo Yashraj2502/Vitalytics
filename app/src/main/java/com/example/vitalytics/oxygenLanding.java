@@ -14,7 +14,7 @@ public class oxygenLanding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oxygen_static_state);
 
-        Button nxtButton = (Button) findViewById(R.id.start);
+        Button nxtButton = (Button) findViewById(R.id.button2);
         nxtButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

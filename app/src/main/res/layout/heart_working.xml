@@ -12,15 +12,32 @@
     android:paddingBottom="16dp"
     android:weightSum="1" >
 
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="200dp"
+        android:layout_height="46dp"
+        android:gravity="center|center_vertical"
+        android:text="Heart Rate"
+        android:textColor="#432C81"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="49dp"
+        android:layout_marginTop="5mm" />
+
     <SurfaceView
         android:id="@+id/preview"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-    </SurfaceView>
+        android:layout_width="285dp"
+        android:layout_height="358dp"
+        android:layout_below="@id/textView9"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="91dp"
+        android:layout_weight="1"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="151dp" />
 
     <ProgressBar
-        android:id="@+id/HRPB"
+        android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="100dp"
         android:layout_height="100dp"

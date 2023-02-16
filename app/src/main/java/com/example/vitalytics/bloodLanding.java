@@ -13,14 +13,15 @@ public class bloodLanding extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blood_landing);
+        getSupportActionBar().hide();
 
-        Button nxt = (Button) findViewById(R.id.start);
-        nxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(bloodLanding.this, bloodWorking.class);
-                startActivity(intent);
-            }
-        });
+//        Button nxt = (Button) findViewById(R.id.start);
+//        nxt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(bloodLanding.this, bloodWorking.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }

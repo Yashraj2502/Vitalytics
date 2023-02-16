@@ -5,26 +5,148 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/texxtView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello!!! There" />
-
-    <EditText
-        android:id="@+id/getAnswer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="NAme"
-        android:layout_below="@id/texxtView" />
+        android:id="@+id/textView9"
+        android:layout_width="200dp"
+        android:layout_height="46dp"
+        android:gravity="center|center_vertical"
+        android:text="Heart Rate"
+        android:textColor="#432C81"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="49dp"
+        android:layout_marginTop="5mm"
+        android:layout_marginLeft="100dp"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/nextPage"
-        android:text="Button"
-        android:layout_below="@id/getAnswer" />
+        android:id="@+id/button"
+        android:layout_width="252dp"
+        android:layout_height="179dp"
+        android:layout_below="@id/textView9"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="61dp"
+        android:background="@drawable/button_press3"
+        android:text="0 BPM"
+        android:textSize="55sp"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="164dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="265dp"
+        android:layout_height="62dp"
+        android:layout_below="@id/button"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/button_press"
+        android:text="Start"
+        android:textColor="@color/OffWhite"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="399dp" />
+
+    <TextView
+        android:id="@+id/editTextTextMultiLine2"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/button2"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="158dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:text="- Make sure the camera is fully covered. "
+        android:textColor="#0B0640"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="617dp" />
+
+    <TextView
+        android:id="@+id/editTextTextMultiLine3"
+        android:layout_width="319dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/editTextTextMultiLine7"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="103dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:text="- Measure in a shaded environment."
+        android:textAlignment="center"
+        android:textColor="#0B0640"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="655dp" />
+
+    <TextView
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="322dp"
+        android:layout_height="65dp"
+        android:layout_below="@id/editTextTextMultiLine7"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="-1dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:text="- Lightly place your index fingure on the rear camera."
+        android:textAlignment="center"
+        android:textColor="#0B0640"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="552dp" />
+
+    <TextView
+        android:id="@+id/editTextTextMultiLine7"
+        android:layout_width="317dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/button2"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="47dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:text="Important Notice"
+        android:textAlignment="center"
+        android:textColor="#0B0640"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="505dp" />
+
+    <TextView
+        android:id="@+id/editTextTextMultiLine4"
+        android:layout_width="322dp"
+        android:layout_height="65dp"
+        android:layout_below="@id/editTextTextMultiLine3"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="2dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:text="- Dont move your fingure until the measurement is completed."
+        android:textAlignment="center"
+        android:textColor="#0B0640"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="694dp" />
+
+    <TextView
+        android:id="@+id/editTextTextMultiLine5"
+        android:layout_width="322dp"
+        android:layout_height="65dp"
+        android:layout_below="@id/editTextTextMultiLine4"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="- Finally place your fingure then press start."
+        android:textAlignment="center"
+        android:textColor="#0B0640"
+        android:textSize="16sp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="759dp"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true"/>
 
 
 </RelativeLayout>

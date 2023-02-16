@@ -1,4 +1,6 @@
 package com.example.vitalytics;
 
-public class stressWorking {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class stressWorking extends AppCompatActivity {
 }
